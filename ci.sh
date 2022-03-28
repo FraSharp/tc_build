@@ -63,7 +63,6 @@ function do_llvm() {
         --assertions \
         --branch "release/14.x" \
         --check-targets clang lld llvm \
-        --install-stage1-only \
         --projects "clang;lld" \
         --shallow-clone \
         --targets "ARM;AArch64;X86" \
