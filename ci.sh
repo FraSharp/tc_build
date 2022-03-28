@@ -3,7 +3,7 @@
 BASE=$(dirname "$(readlink -f "${0}")")
 
 set -eu
-#
+
 function parse_parameters() {
     while ((${#})); do
         case ${1} in
@@ -62,7 +62,6 @@ function do_llvm() {
     "${BASE}"/build-llvm.py \
         --assertions \
         --branch "release/14.x" \
-        --build-stage1-only \
         --check-targets clang lld llvm \
         --install-stage1-only \
         --projects "clang;lld" \
