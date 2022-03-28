@@ -22,7 +22,7 @@ function do_all() {
 }
 
 function do_binutils() {
-    "${BASE}"/build-binutils.py -t x86_64
+    "${BASE}"/build-binutils.py -t arm aarch64 x86_64
 }
 
 function do_deps() {
@@ -53,7 +53,7 @@ function do_deps() {
 
 function do_kernel() {
     cd "${BASE}"/kernel
-    ./build.sh -t X86
+    ./build.sh -t "ARM;AArch64;X86"
 }
 
 function do_llvm() {
@@ -61,13 +61,15 @@ function do_llvm() {
     [[ -n ${GITHUB_ACTIONS:-} ]] && EXTRA_ARGS+=(--no-ccache)
     "${BASE}"/build-llvm.py \
         --assertions \
-        --branch "release/13.x" \
+        --branch "release/14.x" \
         --build-stage1-only \
         --check-targets clang lld llvm \
         --install-stage1-only \
         --projects "clang;lld" \
         --shallow-clone \
-        --targets X86 \
+        --targets "ARM;AArch64;X86" \
+        --pgo kernel-defconfig \
+        --lto full \
         "${EXTRA_ARGS[@]}"
 }
 
