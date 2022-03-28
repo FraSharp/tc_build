@@ -3,7 +3,7 @@
 BASE=$(dirname "$(readlink -f "${0}")")
 
 set -eu
-
+#
 function parse_parameters() {
     while ((${#})); do
         case ${1} in
