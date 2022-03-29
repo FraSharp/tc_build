@@ -63,7 +63,7 @@ function do_llvm() {
         --assertions \
         --branch "release/14.x" \
         --check-targets clang lld llvm \
-        --projects "clang;lld" \
+        --projects "clang;lld;polly" \
         --shallow-clone \
         --targets "ARM;AArch64;X86" \
         --pgo kernel-defconfig \
