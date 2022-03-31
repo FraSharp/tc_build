@@ -144,7 +144,7 @@ def parse_parameters(root_folder):
 
                         """),
                         type=str,
-                        default="ClangBuiltLinux")
+                        default="Apple Clang")
     parser.add_argument("-D",
                         "--defines",
                         help=textwrap.dedent("""\

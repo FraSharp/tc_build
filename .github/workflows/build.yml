@@ -14,5 +14,12 @@ jobs:
       run: bash ci.sh llvm
     - name: Build binutils
       run: bash ci.sh binutils
-    - name: Build kernel
-      run: bash ci.sh kernel
+    - name: upload tc
+      env:
+        token: ${{ secrets.GITLAB_TOKEN }}
+      run: |
+        echo Pushing to GitLab
+        git config user.name "FraSharp"
+        git config user.email "s23265@iisve.it"
+        git remote set-url origin "https://oauth2:${token}@gitlab.com/FraSharp/apple-clang.git"
+        git push origin main

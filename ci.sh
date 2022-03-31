@@ -7,7 +7,7 @@ set -eu
 function parse_parameters() {
     while ((${#})); do
         case ${1} in
-            all | binutils | deps | kernel | llvm) ACTION=${1} ;;
+            all | binutils | deps | llvm) ACTION=${1} ;;
             *) exit 33 ;;
         esac
         shift
@@ -18,11 +18,10 @@ function do_all() {
     do_deps
     do_llvm
     do_binutils
-    do_kernel
 }
 
 function do_binutils() {
-    "${BASE}"/build-binutils.py -t arm aarch64 x86_64
+    "${BASE}"/build-binutils.py -t aarch64
 }
 
 function do_deps() {
@@ -51,11 +50,6 @@ function do_deps() {
         zlib1g-dev
 }
 
-function do_kernel() {
-    cd "${BASE}"/kernel
-    ./build.sh -t "ARM;AArch64;X86"
-}
-
 function do_llvm() {
     EXTRA_ARGS=()
     [[ -n ${GITHUB_ACTIONS:-} ]] && EXTRA_ARGS+=(--no-ccache)
@@ -65,7 +59,7 @@ function do_llvm() {
         --check-targets clang lld llvm \
         --projects "clang;lld;polly" \
         --shallow-clone \
-        --targets "ARM;AArch64;X86" \
+        --targets "AArch64" \
         --pgo kernel-defconfig \
         --lto full \
         "${EXTRA_ARGS[@]}"
