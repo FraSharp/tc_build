@@ -54,9 +54,7 @@ function do_llvm() {
     EXTRA_ARGS=()
     [[ -n ${GITHUB_ACTIONS:-} ]] && EXTRA_ARGS+=(--no-ccache)
     "${BASE}"/build-llvm.py \
-        --assertions \
-        --branch "release/14.x" \
-        --check-targets clang lld llvm \
+	--use-good-revision \
         --projects "clang;lld;polly" \
         --shallow-clone \
         --targets "AArch64" \
