@@ -56,7 +56,6 @@ function do_llvm() {
     "${BASE}"/build-llvm.py \
         --use-good-revision \
         --projects "clang;lld;polly" \
-        --shallow-clone \
         --targets "AArch64" \
         --pgo kernel-defconfig \
         --lto full \
