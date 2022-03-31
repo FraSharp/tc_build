@@ -890,7 +890,7 @@ def get_targets(args):
     elif args.full_toolchain:
         targets = "all"
     else:
-        targets = "AArch64;ARM;BPF;Hexagon;Mips;PowerPC;RISCV;SystemZ;X86"
+        targets = "AArch64"
 
     return targets
 
