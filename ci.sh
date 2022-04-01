@@ -57,7 +57,6 @@ function do_llvm() {
         --use-good-revision \
         --projects "clang;lld;polly" \
         --targets "AArch64" \
-        --pgo kernel-defconfig \
         --lto full \
         "${EXTRA_ARGS[@]}"
 }
